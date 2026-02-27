@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User loginUser(String name, String email) {
+
     return userRepository.findByNameAndEmail(name, email)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
   }
