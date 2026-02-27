@@ -1,5 +1,17 @@
 package com.rewear.rewear.repository;
 
-public interface UserRepository {
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rewear.rewear.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+  public Optional<User> findByEmail(String email);
+
+  public Optional<User> findByNameAndEmail(String name, String email);
+
+  public boolean existsByEmail(String email);
 
 }
