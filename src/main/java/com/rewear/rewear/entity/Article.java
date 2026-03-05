@@ -1,7 +1,8 @@
 package com.rewear.rewear.entity;
 
 import java.time.LocalDateTime;
-import java.util.Locale.Category;
+import com.rewear.rewear.entity.enums.Category;
+
 
 import com.rewear.rewear.entity.enums.ArticleStatus;
 import com.rewear.rewear.entity.enums.ItemCondition;
