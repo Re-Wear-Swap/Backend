@@ -38,7 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
       throw new ResponseStatusException(HttpStatus.CONFLICT, "El artículo ya está reservado");
     }
 
-    if (article.getArcticleStatus() != ArticleStatus.DISPONIBLE) {
+    if (article.getArticleStatus() != ArticleStatus.DISPONIBLE) {
       throw new ResponseStatusException(HttpStatus.CONFLICT, "El artículo no está disponible");
     }
 
@@ -49,7 +49,7 @@ public class ReservationServiceImpl implements ReservationService {
     reservation.setArticle(article);
     reservation.setUser(user);
 
-    article.setArcticleStatus(ArticleStatus.RESERVADO);
+    article.setArticleStatus(ArticleStatus.RESERVADO);
     articleRepository.save(article);
 
     return reservationRepository.save(reservation);
@@ -61,7 +61,7 @@ public class ReservationServiceImpl implements ReservationService {
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Reserva no encontrada"));
 
     Article article = reservation.getArticle();
-    article.setArcticleStatus(ArticleStatus.DISPONIBLE);
+    article.setArticleStatus(ArticleStatus.DISPONIBLE);
     articleRepository.save(article);
 
     reservationRepository.delete(reservation);

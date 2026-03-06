@@ -42,7 +42,8 @@ public class ArticleServiceImpl implements ArticleService {
   public Page<Article> getArticlesByDate(LocalDate start, LocalDate end, int page) {
     LocalDateTime startDate = start.atStartOfDay();
     LocalDateTime endDate = end.plusDays(1).atStartOfDay().minusNanos(1);
-    return articleRepository.findByCreatedAtBetweenOrderByCreatedAtDesc(startDate, endDate, PageRequest.of(page, PAGE_SIZE));
+    return articleRepository.findByCreatedAtBetweenOrderByCreatedAtDesc(
+        startDate, endDate, PageRequest.of(page, PAGE_SIZE));
   }
 
   @Override
@@ -66,8 +67,8 @@ public class ArticleServiceImpl implements ArticleService {
     existing.setDescription(updated.getDescription());
     existing.setImageUrl(updated.getImageUrl());
     existing.setCategory(updated.getCategory());
-    existing.setItemCondtition(updated.getItemCondtition());
-    existing.setArcticleStatus(updated.getArcticleStatus());
+    existing.setItemCondition(updated.getItemCondition());
+    existing.setArticleStatus(updated.getArticleStatus());
     return articleRepository.save(existing);
   }
 
