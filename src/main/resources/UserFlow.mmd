@@ -1,0 +1,141 @@
+%%{init: {'theme': 'dark'}}%%
+flowchart TD
+    A([🏠 Llega a la app]) --> B[Página de inicio
+    qué es Re-wear]
+
+    %% NAVEGACION LIBRE
+    B --> C[Ver listado de artículos]
+    C --> D[Filtrar por categoría y/o fecha]
+    D --> C
+    C --> E[Ver detalle de un artículo]
+    E --> E1{¿Quiere reservar?}
+    E1 -- No --> E2[Solo lectura sin acciones]
+
+    %% BOTON EN HOME
+    B --> BTN([🔑 Botón Registrarse / Login en la página de inicio])
+    E1 -- Sí --> BTN
+
+    BTN --> MOD{¿Primera vez en Re-wear?}
+
+    %% CREAR USUARIO
+    MOD -- No tengo cuenta --> G1[Formulario registro nombre, email, mayor de edad ✅]
+    G1 --> H{¿Formulario válido?}
+    H -- No --> I[Mostrar errores de validación]
+    I --> G1
+    H -- Sí --> J([Usuario creado y conectado ✅])
+
+    %% LOGIN
+    MOD -- Ya tengo cuenta --> G2[Formulario login nombre y email]
+    G2 --> G3{¿Usuario existe?}
+    G3 -- No --> G4[Error: usuario no encontrado]
+    G4 --> G2
+    G3 -- Sí --> J2([Usuario conectado ✅])
+
+    %% UNA VEZ CONECTADO
+    J --> K{¿Qué quiere hacer?}
+    J2 --> K
+
+    %% RESERVAR
+    K -- Reservar --> L{¿Estado del artículo?}
+    L -- DISPONIBLE 🟢 --> M[Reservar artículo]
+    M --> N[Estado cambia\na RESERVADO 🟡]
+    N --> O[Contador 24h empieza]
+    O --> P{¿Pasan 24h sin confirmar?}
+    P -- Sí --> Q[Reserva expira automáticamente]
+    Q --> R[Estado vuelve a DISPONIBLE 🟢]
+    P -- No --> S{¿Cancela la reserva?}
+    S -- Sí --> T[Modal confirmación]
+    T --> U[Estado vuelve a DISPONIBLE 🟢]
+    L -- RESERVADO 🟡 --> V[Botón reservar desactivado]
+    L -- INTERCAMBIADO ✅ --> W[Solo lectura sin acciones]
+
+    %% PUBLICAR
+    K -- Publicar artículo --> X[Crear artículo imagen, título, descripción,\nestado, categoría]
+    X --> Y{¿Formulario válido?}
+    Y -- No --> Z[Mostrar errores de validación]
+    Z --> X
+    Y -- Sí --> AA[Artículo publicado DISPONIBLE 🟢]
+
+    %% MIS ARTICULOS
+    K -- Mis artículos --> AC[Mis artículos vista general]
+    AC --> AD{¿Estado del artículo?}
+
+    AD -- DISPONIBLE 🟢 --> AE[Editar artículo]
+    AE --> AF{¿Formulario válido?}
+    AF -- No --> AG[Mostrar errores de validación]
+    AG --> AE
+    AF -- Sí --> AH[Cambios guardados ✅]
+
+    AD -- DISPONIBLE 🟢 --> AI[Eliminar artículo]
+    AD -- RESERVADO 🟡 --> AI
+    AI --> AJ[Modal confirmación]
+    AJ -- Confirma --> AK[Artículo eliminado y reserva en cascada 🗑️]
+    AJ -- Cancela --> AC
+
+    AD -- RESERVADO 🟡 --> AL[Confirmar intercambio]
+    AL --> AM[Modal confirmación]
+    AM -- Confirma --> AN[Estado cambia a INTERCAMBIADO ✅]
+    AM -- Cancela --> AC
+
+    AD -- INTERCAMBIADO ✅ --> AO[Solo lectura sin acciones]
+
+    %% AMARILLO
+    style A   fill:#F8B500,color:#000000
+    style N   fill:#F8B500,color:#000000
+    style O   fill:#F8B500,color:#000000
+
+    %% VERDE
+    style J   fill:#00C897,color:#000000
+    style J2  fill:#00C897,color:#000000
+    style AA  fill:#00C897,color:#000000
+    style AH  fill:#00C897,color:#000000
+    style AN  fill:#00C897,color:#000000
+    style R   fill:#00C897,color:#000000
+    style U   fill:#00C897,color:#000000
+
+    %% NARANJA - boton CTA
+    style BTN fill:#FF8C00,color:#000000
+
+    %% ROJO
+    style AK  fill:#FF6B6B,color:#000000
+    style Q   fill:#FF6B6B,color:#000000
+    style V   fill:#FF6B6B,color:#000000
+    style G4  fill:#FF6B6B,color:#000000
+
+    %% GRIS
+    style W   fill:#888888,color:#000000
+    style AO  fill:#888888,color:#000000
+    style E2  fill:#888888,color:#000000
+
+    %% BLANCO
+    style B   fill:#ffffff,color:#000000
+    style C   fill:#ffffff,color:#000000
+    style D   fill:#ffffff,color:#000000
+    style E   fill:#ffffff,color:#000000
+    style G1  fill:#ffffff,color:#000000
+    style G2  fill:#ffffff,color:#000000
+    style I   fill:#ffffff,color:#000000
+    style M   fill:#ffffff,color:#000000
+    style T   fill:#ffffff,color:#000000
+    style X   fill:#ffffff,color:#000000
+    style Z   fill:#ffffff,color:#000000
+    style AC  fill:#ffffff,color:#000000
+    style AE  fill:#ffffff,color:#000000
+    style AG  fill:#ffffff,color:#000000
+    style AI  fill:#ffffff,color:#000000
+    style AJ  fill:#ffffff,color:#000000
+    style AL  fill:#ffffff,color:#000000
+    style AM  fill:#ffffff,color:#000000
+
+    %% MORADO - decisiones
+    style MOD fill:#7B2FBE,color:#ffffff
+    style E1  fill:#7B2FBE,color:#ffffff
+    style G3  fill:#7B2FBE,color:#ffffff
+    style H   fill:#7B2FBE,color:#ffffff
+    style K   fill:#7B2FBE,color:#ffffff
+    style L   fill:#7B2FBE,color:#ffffff
+    style P   fill:#7B2FBE,color:#ffffff
+    style S   fill:#7B2FBE,color:#ffffff
+    style Y   fill:#7B2FBE,color:#ffffff
+    style AD  fill:#7B2FBE,color:#ffffff
+    style AF  fill:#7B2FBE,color:#ffffff

@@ -10,8 +10,9 @@ import com.rewear.rewear.entity.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-  public Optional<Reservation> findArticleById(Integer id);
+  boolean existsByArticleId(Integer articleId);
 
-  public List<Reservation> findByExpiresBefore(LocalDateTime dateTime);
+  Optional<Reservation> findByArticleId(Integer articleId);
 
+  List<Reservation> findByExpiresAtBefore(LocalDateTime dateTime);
 }

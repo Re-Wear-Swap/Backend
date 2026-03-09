@@ -1,8 +1,8 @@
 package com.rewear.rewear.entity;
 
 import java.time.LocalDateTime;
-import java.util.Locale.Category;
 
+import com.rewear.rewear.entity.enums.Category;
 import com.rewear.rewear.entity.enums.ArticleStatus;
 import com.rewear.rewear.entity.enums.ItemCondition;
 
@@ -45,11 +45,11 @@ public class Article {
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ArticleStatus arcticleStatus = ArticleStatus.DISPONIBLE;
+  private ArticleStatus articleStatus = ArticleStatus.DISPONIBLE;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ItemCondition itemCondtition;
+  private ItemCondition itemCondition;
 
   @Column(nullable = false, updatable = false)
   private LocalDateTime createdAt;
@@ -62,5 +62,4 @@ public class Article {
   protected void onCreate() {
     this.createdAt = LocalDateTime.now();
   }
-
 }
