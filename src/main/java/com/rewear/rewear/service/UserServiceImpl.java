@@ -18,21 +18,31 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User createUser(User user) {
-    if (userRepository.existsByEmail(user.getEmail())) {
-      throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya esiste un usuario con este email");
-    }
-    return userRepository.save(user);
+
+    // Si ya existe → devolverlo en lugar de lanzar error
+    return userRepository.findByEmail(user.getEmail())
+        .orElseGet(() -> userRepository.save(user));
   }
 
   @Override
   public User loginUser(String name, String email) {
-    return userRepository.findByNameAndEmail(name, email)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+
+    // Buscar por email (único)
+    return userRepository.findByEmail(email)
+        .orElseGet(() -> {
+          // Si no existe → crearlo automáticamente
+          User newUser = new User();
+          newUser.setName(name);
+          newUser.setEmail(email);
+          newUser.setIsAdult(true); // 🔥 obligatorio
+          newUser.setPoints(3);
+          return userRepository.save(newUser);
+        });
   }
 
   @Override
-  public User getUserById(Integer Id) {
-    return userRepository.findById(Id)
+  public User getUserById(Integer id) {
+    return userRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
   }
 }
