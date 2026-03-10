@@ -12,16 +12,17 @@ import com.rewear.rewear.entity.Article;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
-  public Page<Article> findAllByOrderByCreatedDateAtDesc(Pageable pageable);
+        public Page<Article> findAllByOrderByCreatedDateAtDesc(Pageable pageable);
 
-  public Page<Article> findByCategoryOrderByCreatedAtDesc(LocalDateTime start, LocalDateTime end, Pageable pageable);
+        public Page<Article> findByCategoryOrderByCreatedAtDesc(LocalDateTime start, LocalDateTime end,
+                        Pageable pageable);
 
-  public Page<Article> findByCreatedAtBetweenOrderByCreatedAtDesc(LocalDateTime start, LocalDateTime end,
-      Pageable pageable);
+        public Page<Article> findByCreatedAtBetweenOrderByCreatedAtDesc(LocalDateTime start, LocalDateTime end,
+                        Pageable pageable);
 
-  public Page<Article> findByCategoryAndCreatedAtBetweenOrderByCreatedAtDesc(Category category, LocalDateTime start,
-      LocalDateTime end, Pageable pageable);
+        public Page<Article> findByCategoryAndCreatedAtBetweenOrderByCreatedAtDesc(Category category,
+                        LocalDateTime start, LocalDateTime end, Pageable pageable);
 
-  public List<Article> findByUserIdOrderByCreatedAtDesc(Integer userId);
+        public List<Article> findByUserIdOrderByCreatedAtDesc(Integer userId);
 
 }
