@@ -9,6 +9,7 @@ import com.rewear.rewear.service.UserService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
 @RequestMapping("/api/users")
 public class UserController {
 
