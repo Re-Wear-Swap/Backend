@@ -7,19 +7,19 @@ import com.rewear.rewear.entity.enums.Category;
 
 public interface ArticleService {
 
-  Article createArticle(Article article);
+  public Article createArticle(Article article);
 
-  Page<Article> getArticles(int page);
+  public Page<Article> getArticles(int page);
 
-  Page<Article> getArticlesByCategory(Category category, int page);
+  public Page<Article> getArticlesByCategory(Category category, int page);
 
-  Page<Article> getArticlesByDate(LocalDate start, LocalDate end, int page);
+  public Page<Article> getArticlesByDate(LocalDate start, LocalDate end, int page);
 
-  Page<Article> getArticlesByCategoryAndDate(Category category, LocalDate start, LocalDate end, int page);
+  public Page<Article> getArticlesByCategoryAndDate(Category category, LocalDate start, LocalDate end, int page);
 
-  Article getArticleById(Integer id);
+  public Article getArticleById(Integer id);
 
-  Article updateArticle(Integer id, Article article);
+  public Article updateArticle(Integer id, Article article);
 
-  void deleteArticle(Integer id);
+  public void deleteArticle(Integer id);
 }
