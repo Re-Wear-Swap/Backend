@@ -7,6 +7,7 @@ import com.rewear.rewear.entity.Reservation;
 import com.rewear.rewear.service.ReservationService;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"})
 @RequestMapping("/api/reservations")
 public class ReservationController {
 
