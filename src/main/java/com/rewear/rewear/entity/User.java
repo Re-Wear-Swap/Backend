@@ -32,5 +32,7 @@ public class User {
 
   @Column(nullable = false)
   private Integer points = 3;
+  @Column(length = 500)
+  private String photo;
 
 }

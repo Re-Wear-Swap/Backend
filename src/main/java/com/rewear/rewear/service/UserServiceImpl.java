@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public User createUser(User user) {
 
-    // Si ya existe → devolverlo en lugar de lanzar error
     return userRepository.findByEmail(user.getEmail())
         .orElseGet(() -> userRepository.save(user));
   }
@@ -27,14 +26,12 @@ public class UserServiceImpl implements UserService {
   @Override
   public User loginUser(String name, String email) {
 
-    // Buscar por email (único)
     return userRepository.findByEmail(email)
         .orElseGet(() -> {
-          // Si no existe → crearlo automáticamente
           User newUser = new User();
           newUser.setName(name);
           newUser.setEmail(email);
-          newUser.setIsAdult(true); // 🔥 obligatorio
+          newUser.setIsAdult(true);
           newUser.setPoints(3);
           return userRepository.save(newUser);
         });

@@ -4,7 +4,11 @@ import com.rewear.rewear.entity.Reservation;
 
 public interface ReservationService {
 
-  Reservation createReservation(Integer articleId, Integer userId);
+  public Reservation createReservation(Integer articleId, Integer userId);
 
-  void deleteReservation(Integer reservationId);
+  public void deleteReservation(Integer reservationId);
+
+  public void confirmExchange(Integer articleId);
+
+  public void checkExpiredReservations();
 }

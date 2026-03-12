@@ -30,4 +30,10 @@ public class ReservationController {
   public void deleteReservation(@PathVariable Integer id) {
     reservationService.deleteReservation(id);
   }
+
+  @PutMapping("/{articleId}/confirm")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void confirmExchange(@PathVariable Integer articleId) {
+    reservationService.confirmExchange(articleId);
+  }
 }
