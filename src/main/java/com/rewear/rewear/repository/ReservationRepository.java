@@ -15,4 +15,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
   Optional<Reservation> findByArticleId(Integer articleId);
 
   List<Reservation> findByExpiresAtBefore(LocalDateTime dateTime);
+  List<Reservation> findByUserId(Integer userId);
 }
