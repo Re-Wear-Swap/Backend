@@ -1,0 +1,34 @@
+erDiagram
+
+    USERS {
+        integer         id              PK
+        varchar100      name
+        varchar150      email
+        boolean         is_adult
+        integer         points
+        string          photo
+    }
+
+    ARTICLES {
+        integer         id              PK
+        varchar150      title
+        text            description
+        varchar255      image_url
+        enum            category
+        enum            article_status
+        enum            item_condition
+        localdate       created_at
+        bigint          user_id         FK
+    }
+
+    RESERVATIONS {
+        integer         id              PK
+        localdatetime   reserved_at
+        localdatetime   expires_at
+        integer         article_id      FK
+        integer         user_id         FK
+    }
+
+    USERS      ||--o{ ARTICLES     : "publica"
+    USERS      ||--o{ RESERVATIONS : "realiza"
+    ARTICLES   ||--o| RESERVATIONS : "tiene"
