@@ -1,15 +1,16 @@
 erDiagram
 
     USERS {
-        bigserial       id              PK
+        integer         id              PK
         varchar100      name
         varchar150      email
         boolean         is_adult
-        localdate       created_at
+        integer         points
+        string          photo
     }
 
     ARTICLES {
-        bigserial       id              PK
+        integer         id              PK
         varchar150      title
         text            description
         varchar255      image_url
@@ -21,11 +22,11 @@ erDiagram
     }
 
     RESERVATIONS {
-        bigserial       id              PK
+        integer         id              PK
         localdatetime   reserved_at
         localdatetime   expires_at
-        bigint          article_id      FK
-        bigint          user_id         FK
+        integer         article_id      FK
+        integer         user_id         FK
     }
 
     USERS      ||--o{ ARTICLES     : "publica"
