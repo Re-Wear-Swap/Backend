@@ -15,11 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -78,8 +76,8 @@ class ReservationControllerTest {
                 .param("articleId", "1")
                 .param("userId", "1")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isCreated())
-            .andExpect(jsonPath("$.id").value(1));
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(1));
     }
 
     @Test
@@ -87,7 +85,7 @@ class ReservationControllerTest {
         doNothing().when(reservationService).deleteReservation(1);
 
         mockMvc.perform(delete("/api/reservations/1"))
-            .andExpect(status().isNoContent());
+                .andExpect(status().isNoContent());
     }
 
     @Test
@@ -96,7 +94,7 @@ class ReservationControllerTest {
         doNothing().when(reservationService).deleteReservation(anyInt());
 
         mockMvc.perform(delete("/api/reservations/article/1"))
-            .andExpect(status().isNoContent());
+                .andExpect(status().isNoContent());
     }
 
     @Test
@@ -104,7 +102,7 @@ class ReservationControllerTest {
         doNothing().when(reservationService).confirmExchange(1);
 
         mockMvc.perform(put("/api/reservations/1/confirm"))
-            .andExpect(status().isNoContent());
+                .andExpect(status().isNoContent());
     }
 
     @Test
@@ -112,7 +110,7 @@ class ReservationControllerTest {
         when(reservationRepository.findByUserId(1)).thenReturn(List.of(mockReservation()));
 
         mockMvc.perform(get("/api/reservations/user/1"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$[0].id").value(1));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1));
     }
 }
