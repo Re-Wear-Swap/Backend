@@ -1,11 +1,9 @@
 package com.rewear.rewear.entity;
 
 import java.time.LocalDateTime;
-
 import com.rewear.rewear.entity.enums.Category;
 import com.rewear.rewear.entity.enums.ArticleStatus;
 import com.rewear.rewear.entity.enums.ItemCondition;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
